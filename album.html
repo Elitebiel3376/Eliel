@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📸 Álbum do Eliel</title>
+<style>
+  :root {
+    --bg: #0b0013;
+    --azul: #9ad9ff;
+    --roxo: #c7a8ff;
+  }
+
+  body {
+    margin: 0;
+    background: radial-gradient(circle at top, #0b0013 0%, #000 70%);
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    color: var(--azul);
+    font-size: 2.4em;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(154, 217, 255, 0.5);
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px var(--azul); }
+    to { text-shadow: 0 0 20px var(--roxo); }
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .photo {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(154, 217, 255, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(154, 217, 255, 0.5);
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.3));
+  }
+
+  .button-container {
+    margin-top: 40px;
+  }
+
+  .button {
+    background: linear-gradient(90deg, var(--azul), var(--roxo));
+    border: none;
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--azul);
+  }
+
+  @media screen and (max-width: 600px) {
+    h1 {
+      font-size: 1.9em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>📸 Álbum de Memórias do Eliel</h1>
+
+<div class="gallery">
+  <div class="photo"><img src="foto1.jpg" alt="Eliel foto 1"></div>
+  <div class="photo"><img src="foto2.jpg" alt="Eliel foto 2"></div>
+  <div class="photo"><img src="foto3.jpg" alt="Eliel foto 3"></div>
+  <div class="photo"><img src="foto4.jpg" alt="Eliel foto 4"></div>
+  <div class="photo"><img src="foto5.jpg" alt="Eliel foto 5"></div>
+  <div class="photo"><img src="foto6.jpg" alt="Eliel foto 6"></div>
+</div>
+
+<div class="button-container">
+  <a href="cronologica.html" class="button">⬅️ Voltar à Linha do Tempo</a>
+</div>
+
+</body>
+</html>

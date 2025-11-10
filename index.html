@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>💙 História do Eliel</title>
+<style>
+:root{
+  --bg:#0b0013;
+  --accent1:#77baff;
+  --accent2:#b5d9ff;
+  --glass: rgba(255,255,255,0.05);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  height:100vh;
+  background: radial-gradient(circle at 10% 10%, #0b0013 0%, #000 40%);
+  color:#e9f4ff;
+  font-family:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  overflow:hidden;
+  position:relative;
+}
+
+/* título */
+h1{
+  font-size:2.6rem;
+  color:var(--accent2);
+  text-shadow:0 0 22px rgba(130,180,255,0.25);
+  margin:0;
+}
+p{
+  color:#cde6ff;
+  font-size:1.05rem;
+  margin:14px 0 34px;
+  opacity:0.9;
+  max-width:360px;
+}
+
+/* botão */
+button{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#0b0013;
+  font-weight:600;
+  border:none;
+  border-radius:999px;
+  padding:14px 34px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:transform .25s, box-shadow .25s;
+  box-shadow:0 0 18px rgba(130,180,255,0.3);
+  z-index:3;
+}
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px rgba(130,180,255,0.5);
+}
+
+/* moldura da foto */
+.photo{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  overflow:hidden;
+  margin-bottom:22px;
+  border:3px solid var(--accent2);
+  box-shadow:0 0 25px rgba(130,180,255,0.3);
+  animation:float 5s ease-in-out infinite;
+}
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+/* assinatura */
+.name{
+  font-size:1.3rem;
+  color:#cde6ff;
+  opacity:.85;
+  margin-top:6px;
+  z-index:3;
+}
+
+/* nuvens */
+.cloud{
+  position:absolute;
+  background:rgba(255,255,255,0.08);
+  border-radius:50%;
+  filter:blur(40px);
+  animation:moveCloud linear infinite;
+  z-index:1;
+}
+@keyframes moveCloud{
+  0%{transform:translateX(-200px);}
+  100%{transform:translateX(110vw);}
+}
+
+/* brilhos */
+.floating-heart{
+  position:fixed;
+  top:-20px;
+  font-size:20px;
+  color:#b5d9ff;
+  opacity:.8;
+  z-index:2;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0);opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+</style>
+</head>
+<body>
+
+<!-- nuvens no fundo -->
+<div class="cloud" style="width:180px;height:100px;top:20%;left:-100px;animation-duration:40s;"></div>
+<div class="cloud" style="width:260px;height:130px;top:60%;left:-200px;animation-duration:60s;"></div>
+<div class="cloud" style="width:220px;height:120px;top:35%;left:-150px;animation-duration:50s;"></div>
+
+<!-- conteúdo -->
+<div class="photo">
+  <img src="foto-eliel.jpg" alt="Foto do Eliel">
+</div>
+
+<h1>💙 Bem-vindo à História do Eliel</h1>
+<p>Cada momento é um pedacinho do amor que cresce junto com ele.  
+Acompanhe essa linda jornada desde o primeiro sorriso até as maiores conquistas.</p>
+
+<button onclick="window.location.href='cronologica.html'">Ver Linha do Tempo</button>
+
+<div class="name">Com amor, mamãe e papai</div>
+
+<script>
+// brilhos flutuantes
+function createHeart(){
+  const h=document.createElement('div');
+  h.className='floating-heart';
+  h.textContent='✨';
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(Math.random()*28+14)+'px';
+  h.style.animationDuration=(Math.random()*5+4)+'s';
+  h.style.opacity=(Math.random()*0.6+0.4);
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>💙 Linha do Tempo do Eliel</title>
+<style>
+:root{
+  --bg:#0b0013;
+  --accent1:#77baff;
+  --accent2:#b5d9ff;
+  --glass: rgba(255,255,255,0.05);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background: radial-gradient(circle at 10% 10%, #0b0013 0%, #000 40%);
+  color:#e9f4ff;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  overflow-x:hidden;
+}
+
+/* header */
+header{
+  text-align:center;
+  padding:48px 20px 10px;
+  position:relative;
+  z-index:2;
+}
+header h1{
+  margin:0;
+  font-size:2.2rem;
+  color:var(--accent2);
+  text-shadow:0 0 18px rgba(130,180,255,0.25);
+}
+header p{
+  margin:10px 0 0;
+  color:#cde6ff;
+  opacity:0.95;
+}
+
+/* timeline container */
+.timeline-wrap{
+  width:100%;
+  max-width:1000px;
+  margin:36px auto 80px;
+  padding:20px;
+  position:relative;
+  z-index:2;
+}
+
+/* center vertical line */
+.timeline-line{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:6px;
+  height:100%;
+  background: linear-gradient(180deg,var(--accent1),var(--accent2));
+  border-radius:6px;
+  box-shadow:0 0 20px rgba(130,180,255,0.25);
+  z-index:1;
+}
+
+/* items */
+.item{
+  position:relative;
+  width:calc(50% - 40px);
+  padding:18px;
+  margin:30px 20px;
+  border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(120,160,255,0.12);
+  box-shadow: 0 6px 22px rgba(15, 25, 45, 0.6);
+  backdrop-filter: blur(4px);
+  z-index:2;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1), box-shadow .25s;
+  cursor:pointer;
+  opacity:0;
+  transform: translateY(20px) scale(.98);
+}
+.item:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(120,160,255,0.12);
+}
+.item.show{
+  opacity:1;
+  transform: translateY(0) scale(1);
+}
+
+/* left / right */
+.item.left{margin-left:0;margin-right:auto;transform-origin:right center;}
+.item.right{margin-left:auto;margin-right:0;transform-origin:left center;}
+
+/* date badge and dot */
+.date{
+  display:inline-block;
+  font-weight:600;
+  color:var(--accent2);
+  margin-bottom:8px;
+}
+.dot{
+  position:absolute;
+  top:24px;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background: linear-gradient(180deg,var(--accent2),var(--accent1));
+  box-shadow:0 0 18px rgba(120,160,255,0.3);
+  left:calc(50% - 10px);
+  transform:translateX(-50%);
+  z-index:3;
+}
+
+/* content inside item */
+.item h3{margin:6px 0 8px;font-size:1.25rem;color:#f9fbff;}
+.item p{margin:0;color:#dbeaff;opacity:0.95;line-height:1.5;font-size:0.98rem;}
+.item .meta{margin-top:12px;display:flex;gap:10px;align-items:center;}
+.chip{
+  padding:6px 10px;
+  background:var(--glass);
+  border-radius:999px;
+  color:#dbeaff;
+  font-size:0.85rem;
+  border:1px solid rgba(180,200,255,0.08);
+}
+
+/* botão álbum */
+.btn-album{
+  display:block;
+  margin:60px auto 20px;
+  width:max-content;
+  padding:14px 32px;
+  font-size:1.05rem;
+  font-weight:500;
+  color:#e9f4ff;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  border:none;
+  border-radius:999px;
+  text-decoration:none;
+  box-shadow:0 0 20px rgba(130,180,255,0.25);
+  animation:pulse 2.8s infinite ease-in-out;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.btn-album:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px rgba(130,180,255,0.5);
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 20px rgba(130,180,255,0.3);}
+  50%{box-shadow:0 0 35px rgba(130,180,255,0.6);}
+}
+
+/* mobile */
+@media (max-width:840px){
+  .timeline-line{ left:20px; transform:none; width:4px; }
+  .item{ width:calc(100% - 90px); margin:18px 0 18px 60px; }
+  .item.left, .item.right { margin:18px 0 18px 60px; }
+  .dot{ left:20px; transform:none; }
+}
+
+/* floating stars */
+.floating-heart{
+  position:fixed;
+  top:-20px;
+  font-size:20px;
+  color:#b5d9ff;
+  opacity:.8;
+  z-index:0;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  0% { transform:translateY(0) rotate(0); opacity:1 }
+  100% { transform:translateY(110vh) rotate(360deg); opacity:0 }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>💙 Linha do Tempo do Eliel</h1>
+  <p>Momentos especiais desde o início dessa linda jornada.</p>
+</header>
+
+<main class="timeline-wrap" id="timelineWrap">
+  <div class="timeline-line" aria-hidden="true"></div>
+
+  <article class="item left" onclick="window.location.href='ultrassom.html'">
+    <div class="date">09/06/2025</div>
+    <h3>🩵 Primeiro Ultrassom</h3>
+    <p>O primeiro vislumbre do nosso pequeno milagre! Um momento cheio de emoção e lágrimas de felicidade.</p>
+    <div class="meta"><span class="chip">Amor</span><span class="chip">Família</span></div>
+  </article>
+
+  <article class="item right" onclick="window.location.href='revelacao.html'">
+    <div class="date">09/08/2025</div>
+    <h3>🎈 Chá de Revelação</h3>
+    <p>O dia em que descobrimos que um príncipe estava a caminho! O azul tomou conta e a emoção foi indescritível.</p>
+    <div class="meta"><span class="chip">Família</span><span class="chip">Surpresa</span></div>
+  </article>
+
+  <article class="item left" onclick="window.location.href='nascimento.html'">
+    <div class="date">??/??/????</div>
+    <h3>👶 Nascimento</h3>
+    <p>Eliel chegou ao mundo, trazendo amor, paz e um novo brilho para todos nós. Um anjo em forma de bebê.</p>
+    <div class="meta"><span class="chip">Milagre</span><span class="chip">Primeiro Dia</span></div>
+  </article>
+
+  <article class="item right" onclick="window.location.href='sorriso.html'">
+    <div class="date">??/??/????</div>
+    <h3>🍼 Primeiro Sorriso</h3>
+    <p>O primeiro sorriso do Eliel iluminou o dia e encheu nossos corações de alegria pura.</p>
+    <div class="meta"><span class="chip">Amor</span></div>
+  </article>
+
+  <article class="item left" onclick="window.location.href='palavra.html'">
+    <div class="date">??/??/????</div>
+    <h3>🗣️ Primeira Palavra</h3>
+    <p>Entre balbucios e risadinhas, Eliel disse sua primeira palavrinha! Um momento simples, mas inesquecível.</p>
+    <div class="meta"><span class="chip">Família</span></div>
+  </article>
+
+  <article class="item right" onclick="window.location.href='passos.html'">
+    <div class="date">??/??/????</div>
+    <h3>🚶‍♂️ Primeiros Passos</h3>
+    <p>Pequenos passos para um bebê, mas gigantes para o coração da mamãe e do papai. Que orgulho!</p>
+    <div class="meta"><span class="chip">Crescimento</span></div>
+  </article>
+
+  <article class="item left" onclick="window.location.href='aniversario1.html'">
+    <div class="date">??/??/????</div>
+    <h3>🎂 1º Aniversário</h3>
+    <p>Um ano de amor, de risadas, de descobertas. Eliel celebrou seu primeiro aniversário rodeado de carinho.</p>
+    <div class="meta"><span class="chip">Festa</span><span class="chip">Família</span></div>
+  </article>
+
+  <article class="item right" onclick="window.location.href='arte.html'">
+    <div class="date">??/??/????</div>
+    <h3>🎨 Primeira Arte</h3>
+    <p>Com lápis e papel, Eliel fez sua primeira “obra-prima” — um rabisco cheio de amor e cor!</p>
+    <div class="meta"><span class="chip">Criatividade</span></div>
+  </article>
+
+  <article class="item left" onclick="window.location.href='aniversario2.html'">
+    <div class="date">??/??/????</div>
+    <h3>💫 2º Aniversário</h3>
+    <p>Nosso pequeno explorador cresce rápido! Cada dia, uma nova descoberta e um novo motivo pra sorrir.</p>
+    <div class="meta"><span class="chip">Amor</span><span class="chip">Família</span></div>
+  </article>
+
+  <a href="album.html" class="btn-album">📸 Álbum de Fotos</a>
+</main>
+
+<script>
+// animação de revelação
+const items = document.querySelectorAll('.item');
+function reveal(){
+  const top = window.scrollY + window.innerHeight;
+  items.forEach((it,i)=>{
+    const rect = it.getBoundingClientRect();
+    const elTop = rect.top + window.scrollY;
+    if(top > elTop + 50){
+      setTimeout(()=> it.classList.add('show'), i*100);
+    }
+  });
+}
+reveal();
+window.addEventListener('scroll', reveal);
+
+// brilhos
+function createHeart() {
+  const h = document.createElement('div');
+  h.className = 'floating-heart';
+  h.textContent = '✨';
+  h.style.left = Math.random()*100 + 'vw';
+  h.style.fontSize = (Math.random()*28 + 14) + 'px';
+  h.style.animationDuration = (Math.random()*5 + 4) + 's';
+  h.style.opacity = (Math.random()*0.6 + 0.4);
+  document.body.appendChild(h);
+  setTimeout(()=> h.remove(), 7000);
+}
+setInterval(createHeart, 400);
+</script>
+</body>
+</html>

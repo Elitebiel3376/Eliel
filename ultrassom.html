@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultrassom</title>
+<style>
+  :root {
+    --bg: #0b0013;
+    --neon: #9dd8ff; /* azul bebê neon */
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
+
+  /* Fundo com estrelas */
+  .estrelas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .estrela {
+    position: absolute;
+    background: var(--neon);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: cair 5s linear infinite;
+  }
+
+  @keyframes cair {
+    0% { transform: translateY(-10px) scale(1); opacity: 1; }
+    100% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+  }
+
+  .retangulo {
+    width: 280px;
+    height: 500px;
+    border: 2px solid var(--neon);
+    border-radius: 20px;
+    box-shadow: 0 0 20px var(--neon), inset 0 0 20px var(--neon);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+
+  video {
+    width: 85%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px var(--neon);
+  }
+
+  .texto {
+    margin-top: 15px;
+    text-align: center;
+    max-width: 230px;
+    font-size: 15px;
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+
+  /* botão de voltar */
+  .voltar {
+    margin-top: 25px;
+    background: none;
+    border: 2px solid var(--neon);
+    color: var(--neon);
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 10px 26px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px var(--neon);
+    z-index: 2;
+  }
+
+  .voltar:hover {
+    background: var(--neon);
+    color: #0b0013;
+    box-shadow: 0 0 20px var(--neon);
+    transform: scale(1.05);
+  }
+
+  .brilho {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--neon) 0%, transparent 70%);
+    opacity: 0.05;
+    animation: pulsar 6s infinite alternate;
+    z-index: 1;
+  }
+
+  @keyframes pulsar {
+    from { transform: scale(1); opacity: 0.08; }
+    to { transform: scale(1.2); opacity: 0.03; }
+  }
+</style>
+</head>
+<body>
+  <div class="brilho"></div>
+  <div class="estrelas" id="fundoEstrelas"></div>
+
+  <div class="retangulo">
+    <video src="video.mp4" autoplay loop muted></video>
+    <div class="texto">
+      “Bem-vindo(a) ao começo de tudo.  
+      Pequeno, frágil, mas já tão amado.  
+      Um momento onde o coração bate pela primeira vez...  
+      e o amor começa a ter forma.” 💙
+    </div>
+  </div>
+
+  <button class="voltar" onclick="window.location.href='cronologica.html'">← Voltar para a Linha do Tempo</button>
+
+  <script>
+    const fundo = document.getElementById('fundoEstrelas');
+    for (let i = 0; i < 50; i++) {
+      const estrela = document.createElement('div');
+      estrela.classList.add('estrela');
+      estrela.style.left = Math.random() * 100 + 'vw';
+      estrela.style.animationDuration = 3 + Math.random() * 4 + 's';
+      estrela.style.opacity = Math.random();
+      estrela.style.width = estrela.style.height = Math.random() * 3 + 'px';
+      fundo.appendChild(estrela);
+    }
+  </script>
+</body>
+</html>
